@@ -1,6 +1,5 @@
 const API_KEY = '47a0860dbc94f48214654c4a36bc54c1';
-const API_BASE = 'https://developers.themoviedb.org/3/';
-
+const API_BASE = 'https://developers.themoviedb.org/3';
 
 // Pegando os filmes referentes as catgegorias escolhidas
 // - mais populares   movies/get-popular-movies
@@ -14,32 +13,30 @@ const basicFetch = async (endpoint) => {
     return json;
 }
 
+// {
+//     slug: 'movies/get-popular-movies',
+//     title: 'Mais Populares',
+//     items: []
+// }
 
-
-export defautl{
+export default {
     getHomeList: async () => {
-        return [
-            {
-                slug: 'popular-movies',
-                title: 'Mais Populares',
-                items: []
-            }
-            {
+        return [{
                 slug: 'originals',
                 title: 'Originais da Netflix',
-                items: []
-            }
+                items: await basicFetch(`/discover/tv?with_network=213&language=pt-BR&api_key=${API_KEY}`)
+            },
             {
                 slug: 'comedy',
                 title: 'Comédia',
-                items: []
-            }
+                items: await basicFetch(`/discover/movi?with_genres=35&language=pt-BR&api_key=${API_KEY}`)
+            },
             {
                 slug: 'action',
                 title: 'Ação',
-                items: []
-            }
-        ]
+                items: await basicFetch(`/discover/movi?with_genres=28&language=pt-BR&api_key=${API_KEY}`)
+            },
+        ];
     }
 
 }
