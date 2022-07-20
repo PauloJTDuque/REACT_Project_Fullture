@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import tmdb from './tmdb';
-import movierow from './components/movierow';
+import {getHomeList} from './Tmdb';
+import {Movierow} from './components/Movierow';
 
-
-
-export default () => {
+export const App = () => {
 
   const [movieList, setMovieList ] = useState([]);
 
@@ -13,7 +11,7 @@ export default () => {
     const loadAll = async () => {
 
       // pegando a lista total
-      let list = await tmdb.getHomeList();
+      let list = await getHomeList();
       setMovieList(list);
       //console.log(list);
     }
@@ -21,18 +19,17 @@ export default () => {
 
   }, []);
 
-  // Preparando corpo da pagina
-  //Header
-  //Destaque
-  //As Listas
-  //Rodape
-  
+ 
   
   return(
     <div className="page">
       <section className="lists">
         {movieList.map((item, key)=>(
-          <movierow />
+          <p>
+            {
+              item.title
+            }
+          </p>
         ))}
       </section>
     </div>

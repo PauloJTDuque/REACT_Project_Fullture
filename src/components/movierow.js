@@ -1,7 +1,7 @@
 import React from 'react';
-import './movierow.css';
+import './Movierow.css';
 
-export default () => {
+export const Movierow = () => {
     return (
         <div>
 
